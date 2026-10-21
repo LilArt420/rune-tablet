@@ -10,38 +10,38 @@ const W = 660, H = 522, LEFT = 283;
 const TABS = ['tablet', 'book', 'decomp'];
 
 const STYLE = `
-:host, .rt { font: 12px Tahoma, Verdana, sans-serif; color: #1d2b4f; }
+.rt { font: 12px Tahoma, Verdana, sans-serif; color: #1d2b4f; }
 .rt { position: relative; width: ${W}px; height: ${H}px; overflow: hidden; user-select: none; }
 .rt img.bg, .rt .abs { position: absolute; }
-.tabs { position: absolute; left: 9px; top: 4px; width: 265px; height: 26px; cursor: pointer; }
-.tagbar { position: absolute; left: 0; top: 32px; width: ${LEFT}px; height: 32px; }
-.tagbar .label { position: absolute; left: 30px; right: 30px; top: 8px; text-align: center; font-weight: bold; }
-.arrow { position: absolute; top: 9px; width: 10px; height: 15px; cursor: pointer; }
-.list { position: absolute; left: 3px; top: 68px; width: 278px; height: 418px; overflow-y: auto; }
-.row { position: relative; width: 276px; margin-bottom: 1px; cursor: pointer; }
-.row img.rbg { position: absolute; left: 0; top: 0; }
-.row .icon { position: absolute; left: 6px; width: 35px; height: 35px; }
-.row .name { position: absolute; left: 48px; right: 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.row .sub { position: absolute; left: 48px; right: 8px; color: #56658a; font-size: 11px; }
-.right { position: absolute; left: ${LEFT}px; top: 0; width: 377px; height: ${H}px; }
-.title { position: absolute; left: 48px; right: 48px; top: 15px; height: 24px; text-align: center; font-weight: bold; font-size: 13px; line-height: 24px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.pane { position: absolute; left: 14px; right: 14px; top: 56px; bottom: 46px; overflow-y: auto; }
-.center { text-align: center; }
-.mats { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; margin: 8px 0; }
-.mat { width: 52px; text-align: center; font-size: 11px; }
-.mat .slot { position: relative; width: 38px; height: 38px; margin: 0 auto 2px; }
-.mat .slot img { position: absolute; left: 0; top: 0; }
-.mat .slot img.item { left: 7px; top: 7px; width: 24px; height: 24px; }
-.short { color: #c0392b; } .enough { color: #1e8449; }
-.slots6 { display: grid; grid-template-columns: repeat(3, 40px); gap: 6px; justify-content: center; margin: 6px 0; }
-.slots6 img { width: 35px; height: 35px; }
-.slots6 .off { filter: grayscale(1) opacity(.35); }
-.desc { margin: 6px 2px; line-height: 1.45; }
-.desc b { color: #2b4f9e; }
-.btn { position: absolute; bottom: 14px; cursor: pointer; }
-.btn.disabled { cursor: default; }
-.msg { position: absolute; left: 14px; right: 14px; bottom: 40px; text-align: center; font-weight: bold; min-height: 16px; }
-.empty { color: #56658a; padding: 14px; text-align: center; }
+.rt .tabs { position: absolute; left: 9px; top: 4px; width: 265px; height: 26px; cursor: pointer; }
+.rt .tagbar { position: absolute; left: 0; top: 32px; width: ${LEFT}px; height: 32px; }
+.rt .tagbar .label { position: absolute; left: 30px; right: 30px; top: 8px; text-align: center; font-weight: bold; }
+.rt .arrow { position: absolute; top: 9px; width: 10px; height: 15px; cursor: pointer; }
+.rt .list { position: absolute; left: 3px; top: 68px; width: 280px; height: 418px; overflow-y: auto; overflow-x: hidden; }
+.rt .row { position: relative; width: 276px; margin-bottom: 1px; cursor: pointer; }
+.rt .row img.rbg { position: absolute; left: 0; top: 0; }
+.rt .row .icon { position: absolute; left: 6px; width: 35px; height: 35px; }
+.rt .row .name { position: absolute; left: 48px; right: 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.rt .row .sub { position: absolute; left: 48px; right: 8px; color: #56658a; font-size: 11px; }
+.rt .right { position: absolute; left: ${LEFT}px; top: 0; width: 377px; height: ${H}px; }
+.rt .title { position: absolute; left: 48px; right: 48px; top: 15px; height: 24px; text-align: center; font-weight: bold; font-size: 13px; line-height: 24px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.rt .pane { position: absolute; left: 14px; right: 14px; top: 56px; bottom: 46px; overflow-y: auto; }
+.rt .center { text-align: center; }
+.rt .mats { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; margin: 8px 0; }
+.rt .mat { width: 52px; text-align: center; font-size: 11px; }
+.rt .mat .slot { position: relative; width: 38px; height: 38px; margin: 0 auto 2px; }
+.rt .mat .slot img { position: absolute; left: 0; top: 0; }
+.rt .mat .slot img.item { left: 7px; top: 7px; width: 24px; height: 24px; }
+.rt .short { color: #c0392b; } .enough { color: #1e8449; }
+.rt .slots6 { display: grid; grid-template-columns: repeat(3, 40px); gap: 6px; justify-content: center; margin: 6px 0; }
+.rt .slots6 img { width: 35px; height: 35px; }
+.rt .slots6 .off { filter: grayscale(1) opacity(.35); }
+.rt .desc { margin: 6px 2px; line-height: 1.45; }
+.rt .desc b { color: #2b4f9e; }
+.rt .btn { position: absolute; bottom: 14px; cursor: pointer; }
+.rt .btn.disabled { cursor: default; }
+.rt .msg { position: absolute; left: 14px; right: 14px; bottom: 40px; text-align: center; font-weight: bold; min-height: 16px; }
+.rt .empty { color: #56658a; padding: 14px; text-align: center; }
 `;
 
 const escape = text => String(text ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -57,7 +57,8 @@ export default function init(parameters, api) {
     const setSrc = async (img, name) => { const url = await image(name); if (url) img.src = url; else img.style.visibility = 'hidden'; };
     const itemName = id => api.items.get(id)?.name || `Item ${id}`;
 
-    const win = api.ui.window({ id: 'runetablet', title: 'Rune Tablet', width: W, height: H + 4, resizable: false });
+    // the frame adds a 1px border and a 22px title bar around the body
+    const win = api.ui.window({ id: 'runetablet', title: 'Rune Tablet', width: W + 2, height: H + 25, resizable: false });
     win.body.innerHTML = `<style>${STYLE}</style><div class="rt">
         <img class="bg" style="left:0;top:0" data-art="bg_rune_list.bmp">
         <img class="tabs" data-tabs>
@@ -276,7 +277,10 @@ export default function init(parameters, api) {
     }
 
     $('[data-tabs]').onclick = event => {
-        const index = Math.min(2, Math.floor(event.offsetX / (265 / 3)));
+        // the strip's three tabs: 0-64, 67-131 and 134-198 px; the rest is blank
+        const x = event.offsetX;
+        if (x > 198) return;
+        const index = x < 66 ? 0 : x < 133 ? 1 : 2;
         tab = TABS[index];
         selected = null;
         message('');
@@ -292,6 +296,8 @@ export default function init(parameters, api) {
         renderList();
         renderDetail();
     }
+    // leaving the game (to character select or the login) closes it
+    api.on('exit', () => win.hide());
     api.on('server:event', ({ command, text }) => {
         if (command === 'runetab' && String(text).trim() === 'open') open();
     });

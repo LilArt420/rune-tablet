@@ -15,7 +15,7 @@
 //= Replies go out as "@@reply <n> <part>/<parts> <text>" lines.
 //=============================================================================
 
-prontera,193,189,4	script	Rune Tablet#rtui	4_F_JOB_BLACKSMITH,{
+prontera,193,189,4	script	Rune Tablet#rtui	4_EP17_TABLET,{
 	mes "[Rune Tablet]";
 	mes "Here are your rune tablets: register runes in the book, build their sets and grow them stronger, or break items down into rune materials.";
 	close2;
