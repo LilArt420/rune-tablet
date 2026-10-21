@@ -13,7 +13,10 @@ const STYLE = `
 .rt .tabs { position: absolute; left: 9px; top: 4px; width: 265px; height: 26px; cursor: pointer; }
 .rt .tagbar { position: absolute; left: 0; top: 32px; width: ${LEFT}px; height: 32px; }
 .rt .tagbar .label { position: absolute; left: 30px; right: 30px; top: 8px; text-align: center; font-weight: bold; }
-.rt .arrow { position: absolute; top: 9px; width: 10px; height: 15px; cursor: pointer; }
+.rt .arrow { position: absolute; top: 6px; width: 22px; height: 20px; line-height: 20px; text-align: center; cursor: pointer;
+  color: #2b4f9e; font-size: 13px; border-radius: 3px; }
+.rt .arrow:hover { background: rgba(43, 79, 158, .12); }
+.rt .tagbar .label { cursor: pointer; }
 .rt .list { position: absolute; left: 3px; top: 68px; width: 280px; height: 418px; overflow-y: auto; overflow-x: hidden; }
 .rt .row { position: relative; width: 276px; margin-bottom: 1px; cursor: pointer; }
 .rt .row img.rbg { position: absolute; left: 0; top: 0; }
@@ -59,8 +62,8 @@ export default function init(parameters, api) {
     win.body.innerHTML = `<style>${STYLE}</style><div class="rt">
         <img class="bg" style="left:0;top:0" data-art="bg_rune_list.bmp">
         <img class="tabs" data-tabs>
-        <div class="tagbar"><img class="bg" data-art="bg_tag1.bmp"><img class="arrow" style="left:10px" data-arrow="-1">
-            <div class="label"></div><img class="arrow" style="right:10px" data-arrow="1"></div>
+        <div class="tagbar"><img class="bg" data-art="bg_tag1.bmp"><span class="arrow" style="left:6px" data-arrow="-1" title="Previous episode">&#9664;</span>
+            <div class="label"></div><span class="arrow" style="right:6px" data-arrow="1" title="Next episode">&#9654;</span></div>
         <div class="list"></div>
         <div class="right"><img class="bg" style="left:0;top:0" data-art="bg_runeset_center.bmp">
             <div class="title"></div><div class="pane"></div><div class="msg"></div>
@@ -68,7 +71,6 @@ export default function init(parameters, api) {
     const $ = sel => win.body.querySelector(sel);
     for (const img of win.body.querySelectorAll('img[data-art]')) setSrc(img, img.dataset.art);
     const arrows = [...win.body.querySelectorAll('[data-arrow]')];
-    for (const a of arrows) setSrc(a, a.dataset.arrow === '-1' ? 'bt_tag_left_nomal.bmp' : 'bt_tag_right_nomal.bmp');
 
     let tab = 'book', tagIndex = 0, selected = null, state = { runes: new Set(), sets: new Map() };
     const tagsWith = list => [...new Set(list.map(e => e.tag))].sort((a, b) => a - b);
@@ -112,7 +114,7 @@ export default function init(parameters, api) {
         const tags = tab === 'tablet' ? tagsWith(DATA.sets) : tab === 'book' ? tagsWith(DATA.runes) : [];
         $('.tagbar').style.display = tags.length ? '' : 'none';
         if (tags.length) {
-            tagIndex = Math.max(0, Math.min(tagIndex, tags.length - 1));
+            tagIndex = ((tagIndex % tags.length) + tags.length) % tags.length;   // the arrows wrap around
             $('.tagbar .label').textContent = DATA.tags[tags[tagIndex]] || `Tag ${tags[tagIndex]}`;
         }
         return tags;
@@ -285,7 +287,10 @@ export default function init(parameters, api) {
         renderList();
         renderDetail();
     };
-    for (const a of arrows) a.onclick = () => { tagIndex += Number(a.dataset.arrow); selected = null; renderList(); renderDetail(); };
+    const step = delta => { tagIndex += delta; selected = null; message(''); renderList(); renderDetail(); };
+    for (const a of arrows) a.onclick = () => step(Number(a.dataset.arrow));
+    $('.tagbar .label').onclick = () => step(1);
+    $('.tagbar .label').title = 'Next episode';
 
     async function open() {
         try { await loadState(); } catch (error) { message(String(error.message || error), false); }
